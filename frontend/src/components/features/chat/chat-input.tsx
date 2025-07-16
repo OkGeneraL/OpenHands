@@ -107,7 +107,8 @@ export function ChatInput({
   return (
     <div
       data-testid="chat-input"
-      className="flex items-end justify-end grow gap-2 sm:gap-1 min-h-6 w-full"
+      className="flex items-end justify-end grow gap-2 sm:gap-1 min-h-6 w-full bg-glass/80 rounded-2xl shadow-glass p-2 md:p-3 transition-all duration-200"
+      style={{ backdropFilter: "blur(12px)" }}
     >
       <TextareaAutosize
         ref={textareaRef}
@@ -126,12 +127,11 @@ export function ChatInput({
         maxRows={maxRows}
         data-dragging-over={isDraggingOver}
         className={cn(
-          "grow text-sm sm:text-sm self-center placeholder:text-neutral-400 text-white resize-none outline-hidden ring-0",
-          "transition-all duration-200 ease-in-out",
-          "min-h-[44px] sm:min-h-auto", // Better touch target on mobile
+          "grow text-base sm:text-sm self-center placeholder:text-neutral-400 text-white resize-none outline-hidden ring-0 bg-glass-light border border-glass rounded-xl px-4 py-2 focus:ring-2 focus:ring-accent focus:outline-none transition-all duration-200",
+          "min-h-[44px] sm:min-h-auto",
           isDraggingOver
-            ? "bg-neutral-600/50 rounded-lg px-3 sm:px-2"
-            : "bg-transparent",
+            ? "bg-accent/10 border-accent"
+            : "",
           className,
         )}
       />
