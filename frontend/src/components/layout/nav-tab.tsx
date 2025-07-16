@@ -26,16 +26,17 @@ export function NavTab({
       key={to}
       to={to}
       className={cn(
-        "px-2 border-b border-r border-neutral-600 bg-base-secondary flex-1",
+        "px-3 sm:px-2 border-b border-r border-neutral-600 bg-base-secondary flex-1",
         "first-of-type:rounded-tl-xl last-of-type:rounded-tr-xl last-of-type:border-r-0",
-        "flex items-center gap-2 h-full min-h-[36px]",
+        "flex items-center gap-2 h-full min-h-[40px] sm:min-h-[36px]",
+        "hover:bg-base transition-colors duration-200",
       )}
     >
       {({ isActive }) => (
         <div className="flex items-center justify-between w-full">
-          <div className="flex items-center gap-1 min-w-0">
+          <div className="flex items-center gap-2 sm:gap-1 min-w-0">
             <div className={cn(isActive && "text-logo")}>{icon}</div>
-            <span className="truncate">{label}</span>
+            <span className="truncate text-sm sm:text-xs">{label}</span>
             {isBeta && <BetaBadge />}
           </div>
           <div className="flex items-center gap-2 flex-shrink-0">

@@ -65,18 +65,20 @@ export function Container({
     }
   };
 
-  const showScrollButtons = containerWidth < 598 && labels && labels.length > 0;
+  // Show scroll buttons on smaller screens and when there are many tabs
+  const showScrollButtons = containerWidth < 768 && labels && labels.length > 2;
 
   return (
     <div
       ref={containerRef}
       className={clsx(
-        "bg-base-secondary border border-neutral-600 rounded-xl flex flex-col h-full w-full",
+        "glass-panel card flex flex-col h-full w-full p-0 md:p-2 transition-all duration-200",
         className,
       )}
+      style={{ backdropFilter: "blur(16px)", background: "var(--bg-glass)" }}
     >
       {labels && (
-        <div className="relative flex items-center h-[36px] w-full">
+        <div className="relative flex items-center h-[48px] sm:h-[40px] w-full bg-glass/80 rounded-t-xl border-b border-glass px-2 md:px-4">
           {/* Left scroll button */}
           {showScrollButtons && (
             <ScrollLeftButton
@@ -89,7 +91,7 @@ export function Container({
           <div
             ref={scrollContainerRef}
             className={clsx(
-              "flex text-xs overflow-x-auto scrollbar-hide w-full",
+              "flex text-base sm:text-xs overflow-x-auto scrollbar-hide w-full gap-2 md:gap-4",
               showScrollButtons && "mx-8",
             )}
             onScroll={updateScrollButtons}
@@ -119,11 +121,11 @@ export function Container({
         </div>
       )}
       {!labels && label && (
-        <div className="px-2 h-[36px] border-b border-neutral-600 text-xs flex items-center">
+        <div className="px-4 sm:px-2 h-[48px] sm:h-[40px] border-b border-glass text-base sm:text-xs flex items-center bg-glass/80 rounded-t-xl">
           {label}
         </div>
       )}
-      <div className="overflow-hidden flex-grow rounded-b-xl">{children}</div>
+      <div className="overflow-hidden flex-grow rounded-b-xl p-2 md:p-4">{children}</div>
     </div>
   );
 }
