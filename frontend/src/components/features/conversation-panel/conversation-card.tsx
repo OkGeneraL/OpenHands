@@ -181,15 +181,17 @@ export function ConversationCard({
         data-testid="conversation-card"
         onClick={onClick}
         className={cn(
-          "h-auto w-full px-[18px] py-4 border-b border-neutral-600 cursor-pointer",
+          "card glass-panel h-auto w-full px-6 py-4 border-b border-glass cursor-pointer transition-all duration-150 hover:shadow-card hover:scale-[1.01] bg-glass/80 backdrop-blur-md",
           variant === "compact" &&
             "md:w-fit h-auto rounded-xl border border-[#525252]",
+          isActive && "ring-2 ring-accent ring-offset-2"
         )}
+        style={{ borderRadius: "1.25rem", background: "var(--bg-glass)" }}
       >
         <div className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2 flex-1 min-w-0 overflow-hidden mr-2">
             {isActive && (
-              <span className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+              <span className="w-2 h-2 bg-accent rounded-full flex-shrink-0 shadow-md" />
             )}
             {titleMode === "edit" && (
               <input
@@ -200,13 +202,13 @@ export function ConversationCard({
                 onKeyUp={handleKeyUp}
                 type="text"
                 defaultValue={title}
-                className="text-sm leading-6 font-semibold bg-transparent w-full"
+                className="text-base leading-6 font-semibold bg-transparent w-full focus:outline-none focus:ring-2 focus:ring-accent rounded-lg px-2 py-1"
               />
             )}
             {titleMode === "view" && (
               <p
                 data-testid="conversation-card-title"
-                className="text-sm leading-6 font-semibold bg-transparent truncate overflow-hidden"
+                className="text-base leading-6 font-semibold bg-transparent truncate overflow-hidden"
                 title={title}
               >
                 {title}
