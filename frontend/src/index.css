@@ -1,35 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  --bg-dark: #0c0e10;
-  --bg-light: #292929;
-  --bg-input: #393939;
-  --bg-workspace: #1f2228;
-  --border: #3c3c4a;
+  --bg-dark: #181A20;
+  --bg-light: #23262F;
+  --bg-glass: rgba(36, 39, 46, 0.7);
+  --bg-glass-light: rgba(36, 39, 46, 0.4);
+  --bg-gradient: linear-gradient(135deg, #23262F 0%, #181A20 100%);
+  --accent: #7F5AF0;
+  --primary: #FFD600;
+  --border: #23262F;
   --text-editor-base: #9099ac;
-  --text-editor-active: #c4cbda;
-  --bg-editor-sidebar: #24272e;
-  --bg-editor-active: #31343d;
-  --border-editor-sidebar: #3c3c4a;
-  background-color: var(--base) !important;
+  --text-editor-active: #FFD600;
+  --bg-editor-sidebar: #23262F;
+  --bg-editor-active: #23262F;
+  --border-editor-sidebar: #23262F;
+  background-color: var(--bg-dark) !important;
   --bg-neutral-muted: #afb8c133;
 }
 
 body {
   margin: 0;
-  font-family:
-    -apple-system, "SF Pro", BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* Mobile-specific improvements */
+  background: var(--bg-gradient);
+  color: #ECEDEE;
+  min-height: 100vh;
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   overflow-x: hidden;
 }
 
-code {
-  font-family:
-    source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+.glass-panel {
+  background: var(--bg-glass);
+  box-shadow: 0 4px 32px 0 rgba(31, 38, 135, 0.15);
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+}
+
+.card {
+  background: var(--bg-glass-light);
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.10);
+  border-radius: 1.25rem;
+  border: 1px solid var(--border);
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+.card:hover {
+  box-shadow: 0 4px 16px 0 rgba(127,90,240,0.15);
+  transform: translateY(-2px) scale(1.01);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  background: var(--bg-glass-light);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 8px;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+button, [role="button"], input[type="button"], input[type="submit"], input[type="reset"] {
+  min-height: 44px;
+  min-width: 44px;
+  font-family: inherit;
+  border-radius: 0.75rem;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 600;
+  box-shadow: 0 1.5px 6px 0 rgba(127,90,240,0.15);
+  transition: background 0.2s, box-shadow 0.2s, transform 0.1s;
+}
+button:hover, [role="button"]:hover, input[type="button"]:hover, input[type="submit"]:hover, input[type="reset"]:hover {
+  background: linear-gradient(90deg, #7F5AF0 0%, #FFD600 100%);
+  color: #181A20;
+  box-shadow: 0 4px 16px 0 rgba(127,90,240,0.25);
+  transform: translateY(-1px) scale(1.03);
+}
+
+input, textarea, select {
+  background: var(--bg-glass-light);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  color: #ECEDEE;
+  font-family: inherit;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent);
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
 }
 
 .markdown-body code {
@@ -39,7 +111,7 @@ code {
   white-space: break-spaces;
   background-color: #2a3038;
   border-radius: 4px;
-  color: #e6edf3;
+  color: #FFD600;
   border: 1px solid #30363d;
   letter-spacing: -0.2px;
 }
@@ -50,7 +122,7 @@ code {
 }
 
 .markdown-body {
-  white-space: pre-wrap; /* Handles line breaks */
+  white-space: pre-wrap;
 }
 
 .markdown-body th {
@@ -62,76 +134,39 @@ code {
   padding: 0.1rem 1rem;
 }
 
-/* Fast smooth scrolling for chat interface */
 .fast-smooth-scroll {
   scroll-behavior: smooth;
   scroll-timeline: 100ms;
 }
 
-/* Mobile-specific improvements */
 @media (max-width: 768px) {
-  /* Improve touch targets */
-  button, 
-  [role="button"], 
-  input[type="button"], 
-  input[type="submit"], 
-  input[type="reset"] {
-    min-height: 44px;
-    min-width: 44px;
-  }
-
-  /* Better scrolling on mobile */
-  .overflow-auto,
-  .overflow-y-auto,
-  .overflow-x-auto {
-    -webkit-overflow-scrolling: touch;
-  }
-
-  /* Improve text readability on mobile */
   body {
-    font-size: 16px; /* Prevent zoom on iOS */
+    font-size: 16px;
   }
-
-  /* Better spacing for mobile */
   .p-2 {
     padding: 0.75rem;
   }
-
   .gap-2 {
     gap: 0.75rem;
   }
-
-  /* Improve modal and overlay handling */
-  .fixed,
-  .absolute {
+  .fixed, .absolute {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
   }
 }
 
-/* Hide scrollbars on mobile while keeping functionality */
-@media (max-width: 768px) {
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-  
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-}
-
-/* Improve focus states for accessibility */
 button:focus,
 input:focus,
 textarea:focus,
 select:focus,
 [tabindex]:focus {
-  outline: 2px solid #C9B974;
+  outline: 2px solid var(--primary);
   outline-offset: 2px;
 }
 
-/* Better loading states for mobile */
+.loading-spinner {
+  color: var(--accent);
+}
 @media (max-width: 768px) {
   .loading-spinner {
     transform: scale(1.2);
