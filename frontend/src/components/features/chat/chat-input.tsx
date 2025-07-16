@@ -107,7 +107,7 @@ export function ChatInput({
   return (
     <div
       data-testid="chat-input"
-      className="flex items-end justify-end grow gap-1 min-h-6 w-full"
+      className="flex items-end justify-end grow gap-2 sm:gap-1 min-h-6 w-full"
     >
       <TextareaAutosize
         ref={textareaRef}
@@ -126,16 +126,17 @@ export function ChatInput({
         maxRows={maxRows}
         data-dragging-over={isDraggingOver}
         className={cn(
-          "grow text-sm self-center placeholder:text-neutral-400 text-white resize-none outline-hidden ring-0",
+          "grow text-sm sm:text-sm self-center placeholder:text-neutral-400 text-white resize-none outline-hidden ring-0",
           "transition-all duration-200 ease-in-out",
+          "min-h-[44px] sm:min-h-auto", // Better touch target on mobile
           isDraggingOver
-            ? "bg-neutral-600/50 rounded-lg px-2"
+            ? "bg-neutral-600/50 rounded-lg px-3 sm:px-2"
             : "bg-transparent",
           className,
         )}
       />
       {showButton && (
-        <div className={buttonClassName}>
+        <div className={cn("flex-shrink-0", buttonClassName)}>
           {button === "submit" && (
             <SubmitButton isDisabled={disabled} onClick={handleSubmitMessage} />
           )}

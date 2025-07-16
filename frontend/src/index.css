@@ -21,6 +21,10 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* Mobile-specific improvements */
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  overflow-x: hidden;
 }
 
 code {
@@ -62,4 +66,74 @@ code {
 .fast-smooth-scroll {
   scroll-behavior: smooth;
   scroll-timeline: 100ms;
+}
+
+/* Mobile-specific improvements */
+@media (max-width: 768px) {
+  /* Improve touch targets */
+  button, 
+  [role="button"], 
+  input[type="button"], 
+  input[type="submit"], 
+  input[type="reset"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Better scrolling on mobile */
+  .overflow-auto,
+  .overflow-y-auto,
+  .overflow-x-auto {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Improve text readability on mobile */
+  body {
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  /* Better spacing for mobile */
+  .p-2 {
+    padding: 0.75rem;
+  }
+
+  .gap-2 {
+    gap: 0.75rem;
+  }
+
+  /* Improve modal and overlay handling */
+  .fixed,
+  .absolute {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+  }
+}
+
+/* Hide scrollbars on mobile while keeping functionality */
+@media (max-width: 768px) {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Improve focus states for accessibility */
+button:focus,
+input:focus,
+textarea:focus,
+select:focus,
+[tabindex]:focus {
+  outline: 2px solid #C9B974;
+  outline-offset: 2px;
+}
+
+/* Better loading states for mobile */
+@media (max-width: 768px) {
+  .loading-spinner {
+    transform: scale(1.2);
+  }
 }

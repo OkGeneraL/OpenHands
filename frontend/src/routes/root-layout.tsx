@@ -33,12 +33,12 @@ export function ErrorBoundary() {
 
   if (isRouteErrorResponse(error)) {
     return (
-      <div>
-        <h1>{error.status}</h1>
-        <p>{error.statusText}</p>
-        <pre>
+      <div className="p-4 text-center">
+        <h1 className="text-2xl font-bold mb-2">{error.status}</h1>
+        <p className="text-lg mb-4">{error.statusText}</p>
+        <pre className="text-sm bg-base-secondary p-4 rounded-lg overflow-auto">
           {error.data instanceof Object
-            ? JSON.stringify(error.data)
+            ? JSON.stringify(error.data, null, 2)
             : error.data}
         </pre>
       </div>
@@ -46,16 +46,16 @@ export function ErrorBoundary() {
   }
   if (error instanceof Error) {
     return (
-      <div>
-        <h1>{t(I18nKey.ERROR$GENERIC)}</h1>
-        <pre>{error.message}</pre>
+      <div className="p-4 text-center">
+        <h1 className="text-2xl font-bold mb-2">{t(I18nKey.ERROR$GENERIC)}</h1>
+        <pre className="text-sm bg-base-secondary p-4 rounded-lg overflow-auto">{error.message}</pre>
       </div>
     );
   }
 
   return (
-    <div>
-      <h1>{t(I18nKey.ERROR$UNKNOWN)}</h1>
+    <div className="p-4 text-center">
+      <h1 className="text-2xl font-bold">{t(I18nKey.ERROR$UNKNOWN)}</h1>
     </div>
   );
 }
@@ -197,7 +197,7 @@ export default function MainApp() {
   return (
     <div
       data-testid="root-layout"
-      className="bg-base p-3 h-screen lg:min-w-[1024px] flex flex-col md:flex-row gap-3"
+      className="bg-base p-2 sm:p-3 h-screen w-full flex flex-col md:flex-row gap-2 sm:gap-3"
     >
       <Sidebar />
 

@@ -87,13 +87,14 @@ function AppContent() {
   } = useDisclosure();
 
   function renderMain() {
-    if (width <= 1024) {
+    // Use a more mobile-friendly breakpoint
+    if (width <= 768) {
       return (
-        <div className="flex flex-col gap-3 overflow-auto w-full">
-          <div className="rounded-xl overflow-hidden border border-neutral-600 w-full bg-base-secondary min-h-[494px]">
+        <div className="flex flex-col gap-2 sm:gap-3 overflow-auto w-full">
+          <div className="rounded-xl overflow-hidden border border-neutral-600 w-full bg-base-secondary min-h-[400px] sm:min-h-[494px]">
             <ChatInterface />
           </div>
-          <div className="h-full w-full min-h-[494px]">
+          <div className="h-full w-full min-h-[400px] sm:min-h-[494px]">
             <ConversationTabs />
           </div>
         </div>
@@ -116,7 +117,7 @@ function AppContent() {
     <WsClientProvider conversationId={conversationId}>
       <ConversationSubscriptionsProvider>
         <EventHandler>
-          <div data-testid="app-route" className="flex flex-col h-full gap-3">
+          <div data-testid="app-route" className="flex flex-col h-full gap-2 sm:gap-3">
             <div className="flex h-full overflow-auto">{renderMain()}</div>
 
             <Controls

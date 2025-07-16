@@ -65,7 +65,8 @@ export function Container({
     }
   };
 
-  const showScrollButtons = containerWidth < 598 && labels && labels.length > 0;
+  // Show scroll buttons on smaller screens and when there are many tabs
+  const showScrollButtons = containerWidth < 768 && labels && labels.length > 2;
 
   return (
     <div
@@ -76,7 +77,7 @@ export function Container({
       )}
     >
       {labels && (
-        <div className="relative flex items-center h-[36px] w-full">
+        <div className="relative flex items-center h-[40px] sm:h-[36px] w-full">
           {/* Left scroll button */}
           {showScrollButtons && (
             <ScrollLeftButton
@@ -89,7 +90,7 @@ export function Container({
           <div
             ref={scrollContainerRef}
             className={clsx(
-              "flex text-xs overflow-x-auto scrollbar-hide w-full",
+              "flex text-xs overflow-x-auto scrollbar-hide w-full px-2 sm:px-0",
               showScrollButtons && "mx-8",
             )}
             onScroll={updateScrollButtons}
@@ -119,7 +120,7 @@ export function Container({
         </div>
       )}
       {!labels && label && (
-        <div className="px-2 h-[36px] border-b border-neutral-600 text-xs flex items-center">
+        <div className="px-3 sm:px-2 h-[40px] sm:h-[36px] border-b border-neutral-600 text-xs flex items-center">
           {label}
         </div>
       )}
