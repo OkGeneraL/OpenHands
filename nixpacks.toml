@@ -1,0 +1,32 @@
+[phases.setup]
+nixPkgs = [
+  "python312",
+  "poetry",
+  "nodejs_22",
+  "npm-9_x",
+  "git",
+  "curl",
+  "buildPackages.gcc"
+]
+aptPkgs = [
+  "build-essential",
+  "python3.12-dev",
+  "git",
+  "curl",
+  "make"
+]
+
+[phases.install]
+cmds = [
+  "poetry env use python3.12",
+  "poetry install --with dev,test,runtime",
+  "cd frontend && npm install && npm run build && npm install -g serve && cd .."
+]
+
+[phases.build]
+cmds = [
+  "echo Build complete"
+]
+
+[start]
+cmd = "poetry run uvicorn openhands.server.listen:app --host 0.0.0.0 --port 3000 & serve -s frontend/build -l 3001"
