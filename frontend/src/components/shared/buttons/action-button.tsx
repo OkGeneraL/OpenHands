@@ -20,10 +20,11 @@ export function ActionButton({
       <button
         onClick={() => handleAction(action)}
         disabled={isDisabled}
-        className="relative overflow-visible cursor-default hover:cursor-pointer group disabled:cursor-not-allowed transition-colors duration-300 ease-in-out border border-transparent hover:border-red-400/40 rounded-full p-1"
+        className="relative overflow-visible cursor-default hover:cursor-pointer group disabled:cursor-not-allowed transition-all duration-200 border border-glass bg-glass/80 hover:bg-accent/20 hover:border-accent/40 rounded-full p-2 shadow-button focus:ring-2 focus:ring-accent focus:outline-none active:scale-95"
         type="button"
+        style={{ backdropFilter: "blur(8px)" }}
       >
-        <span className="relative group-hover:filter group-hover:drop-shadow-[0_0_5px_rgba(255,64,0,0.4)]">
+        <span className="relative group-hover:filter group-hover:drop-shadow-[0_0_5px_rgba(127,90,240,0.4)]">
           {children}
         </span>
       </button>

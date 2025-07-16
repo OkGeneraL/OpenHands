@@ -1,5 +1,5 @@
 import { useTranslation } from "react-i18next";
-import ArrowSendIcon from "#/icons/arrow-send.svg?react";
+import { Send } from "lucide-react";
 import { I18nKey } from "#/i18n/declaration";
 
 interface SubmitButtonProps {
@@ -15,9 +15,10 @@ export function SubmitButton({ isDisabled, onClick }: SubmitButtonProps) {
       disabled={isDisabled}
       onClick={onClick}
       type="submit"
-      className="border border-white rounded-lg w-6 h-6 hover:bg-neutral-500 focus:bg-neutral-500 flex items-center justify-center cursor-pointer"
+      className="border border-glass bg-glass/80 rounded-xl w-10 h-10 flex items-center justify-center cursor-pointer shadow-button hover:bg-accent/20 hover:border-accent/40 focus:ring-2 focus:ring-accent focus:outline-none active:scale-95 transition-all duration-200"
+      style={{ backdropFilter: "blur(8px)" }}
     >
-      <ArrowSendIcon />
+      <Send size={22} className="text-accent" />
     </button>
   );
 }
